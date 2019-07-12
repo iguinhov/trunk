@@ -1,0 +1,107 @@
+﻿@model Model.modProjetoEmDesenvolvimento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>modProjetoEmDesenvolvimento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idNmSolitacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idNmSolitacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idProjeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProjeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nmVersao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nmVersao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtCadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flEncerrado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flEncerrado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtFinalizado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtFinalizado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nmVersaoFim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nmVersaoFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flCommitSolution)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flCommitSolution)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flVsProd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flVsProd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtPublicacaoFim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dtPublicacaoFim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idUsuarioLogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idUsuarioLogado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

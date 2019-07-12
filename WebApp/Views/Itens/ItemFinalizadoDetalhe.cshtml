@@ -1,0 +1,144 @@
+﻿@model Model.modItensFinalizadosDetalhe
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="x_panel">
+            <h4>Detalhes do Item Finalizado</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Projeto", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.projeto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; text-align: center; font:bold;" } })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Versão", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.nmVersao, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; text-align: center; font:bold;" } })
+                            @Html.ValidationMessageFor(model => model.nmVersao, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Solicitante", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.solicitante, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        </div>
+                    </div>
+                    <br /><br /><br />                  
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Departamento", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.departamento, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.departamento, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Item", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.idItem, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.idItem, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Título", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Desenvolvedor", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.desenvolvedor, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Status", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Prioridade", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.prioridade, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.prioridade, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Data abertura", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.dtAbertura, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; font:bold;" } })
+                            @Html.ValidationMessageFor(model => model.dtAbertura, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Data Programada", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.dtProgramada, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; font:bold;" } })
+                            @Html.ValidationMessageFor(model => model.dtProgramada, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Data Término", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.dtTermino, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; font:bold;" } })
+                            @Html.ValidationMessageFor(model => model.dtTermino, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Descrição", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.descricao, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @disabled = "disabled", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Descrição do desenvolvedor", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.descricaoDesenvolvedor, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @disabled = "disabled", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.descricaoDesenvolvedor, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Alteração/Novo : Camadas/Página Web", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.camadaMetodos, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @disabled = "disabled", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.camadaMetodos, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Alteração/Novo : Procedures/Tabelas SQL", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.proceduresNomes, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @disabled = "disabled", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.proceduresNomes, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.Label("Commit do item no servidor", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.flCommit, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.flCommit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br /><br /><br /><br /><br />
+                </form>
+                <br />
+                <div class="clearfix"></div>
+                <br />
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+
+                    <button type="button" onclick="location.href='@Url.Action("PesquisaItensFinalizadosDesenvolvedor", "Itens")'" class="btn btn-info">
+                        <span class="glyphicon glyphicon-backward"></span> Voltar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

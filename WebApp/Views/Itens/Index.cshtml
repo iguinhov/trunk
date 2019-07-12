@@ -1,0 +1,913 @@
+﻿@model IEnumerable<WebApp.EF_DataModels.TB_PROJETO_ITENS>
+
+@{
+    ViewBag.Title = "Lista Todos os Itens";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ITENS NÃO INICIADOS -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista todos os itens - <small style="color: blue;"><b>não iniciado</b></small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableItmNaoIni" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Número OS")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Departamento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nº Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data Abertura")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Prioridade")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Detalhes")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    if (item.ID_STATUS == 4)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_NM_SOLICITACAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME_SOLICITANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DEPARTAMENTO.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_ITEM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DT_ABERTURA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DESENVOLVEDORES.NOME_DESENVOLVEDOR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_STATUS_DESENVOLVIMENTO.DESCRICAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_PRIORIDADE_ITEM.PRIORIDADE_TIPO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRICAO)
+                            </td>
+                            <td align="center">                               
+                                @Html.ActionLink("Alterar", "AdminsAtualizaItemAberto", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-danger" })                                                                             
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Ver", "Details", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-info" })                                
+                            </td>                          
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ITENS EM ANDAMENTO NORMAL-->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista todos os itens - <small><b style="color: green;">em andamento normal</b></small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableItmEmAndNorm" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Número OS")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Departamento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nº Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data Abertura")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Prioridade")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Detalhes")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    if (item.ID_STATUS == 5)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_NM_SOLICITACAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME_SOLICITANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DEPARTAMENTO.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_ITEM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DT_ABERTURA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DESENVOLVEDORES.NOME_DESENVOLVEDOR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_STATUS_DESENVOLVIMENTO.DESCRICAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_PRIORIDADE_ITEM.PRIORIDADE_TIPO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRICAO)
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Alterar", "AdminsAtualizaItemAberto", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Ver", "Details", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-info" })
+                            </td>              
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- PAUSADO -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista todos os itens - <small style="color: brown;"><b>em pausa</b></small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a> 
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableItmPausa" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Número OS")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Departamento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nº Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data Abertura")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Prioridade")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Detalhes")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    if (item.ID_STATUS == 7)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_NM_SOLICITACAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME_SOLICITANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DEPARTAMENTO.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_ITEM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DT_ABERTURA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DESENVOLVEDORES.NOME_DESENVOLVEDOR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_STATUS_DESENVOLVIMENTO.DESCRICAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_PRIORIDADE_ITEM.PRIORIDADE_TIPO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRICAO)
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Alterar", "AdminsAtualizaItemAberto", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Ver", "Details", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-info" })
+                            </td>              
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ITENS EM ANDAMENTO ATRASADO -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista todos os itens - <small style="color: red;"><b>atrasados</b></small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableItmEmAndAtrasado" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Número OS")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Departamento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nº Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data Abertura")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Prioridade")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Detalhes")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    if (item.ID_STATUS == 6)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_NM_SOLICITACAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME_SOLICITANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DEPARTAMENTO.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_ITEM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DT_ABERTURA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DESENVOLVEDORES.NOME_DESENVOLVEDOR)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_STATUS_DESENVOLVIMENTO.DESCRICAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_PRIORIDADE_ITEM.PRIORIDADE_TIPO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRICAO)
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Alterar", "AdminsAtualizaItemAberto", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                            <td align="center">
+                                @Html.ActionLink("Ver", "Details", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-info" })
+                            </td>              
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ITENS FINALIZADOS -->
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista todos os itens - <small style="color: darkmagenta;"><b>finalizados</b></small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableItmEncerrado" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>                     
+                        <th>
+                            @Html.DisplayName("Número OS")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Departamento")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Nº Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Data Abertura")
+                        </th>                        
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>                 
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>           
+                        <th>
+                            @Html.DisplayName("Prioridade")
+                        </th>  
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>   
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Item")
+                        </th>            
+                    </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                         if(item.ID_STATUS == 8) { 
+                        <tr>                         
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_NM_SOLICITACAO)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NOME_SOLICITANTE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DEPARTAMENTO.NOME)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ID_ITEM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DT_ABERTURA)
+                            </td>                         
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_DESENVOLVEDORES.NOME_DESENVOLVEDOR)
+                            </td>                      
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_STATUS_DESENVOLVIMENTO.DESCRICAO)
+                            </td>                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TB_PRIORIDADE_ITEM.PRIORIDADE_TIPO)
+                            </td> 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DESCRICAO)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Detalhes", "ItemFinalizadoDetalhe", new { id = item.ID_ITEM }, new { @class = "btn btn-sm btn-dark" })
+                            </td>                     
+                        </tr>
+                        }
+                    }
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.bootstrap4.min.js"></script>
+<script src="~/scripts/pdfmake/pdfmake.min.js"></script>
+<script src="~/scripts/pdfmake/vfs_fonts.js"></script>
+
+<script type="text/javascript">
+    //NÃO INICIADO
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
+            if ($("#tableItmNaoIni").length) {
+                $("#tableItmNaoIni").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                      {
+                          extend: "copy",
+                          className: "btn-sm btn-info",
+                          text: "Copiar"
+                      },
+                      {
+                          extend: "excel",
+                          className: "btn-sm btn-success",
+                          text: "Exportar excel"
+                      },
+                      {
+                          extend: "pdfHtml5",
+                          className: "btn-sm btn-warning",
+                          text: "Gerar PDF"
+                      },
+                      {
+                          extend: "print",
+                          className: "btn-sm btn-primary",
+                          text: " Imprimir"
+                      },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+    });
+
+    //EM ANDAMENTO NORMAL
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
+            if ($("#tableItmEmAndNorm").length) {
+                $("#tableItmEmAndNorm").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                      {
+                          extend: "copy",
+                          className: "btn-sm btn-info",
+                          text: "Copiar"
+                      },
+                      {
+                          extend: "excel",
+                          className: "btn-sm btn-success",
+                          text: "Exportar excel"
+                      },
+                      {
+                          extend: "pdfHtml5",
+                          className: "btn-sm btn-warning",
+                          text: "Gerar PDF"
+                      },
+                      {
+                          extend: "print",
+                          className: "btn-sm btn-primary",
+                          text: " Imprimir"
+                      },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+    });
+
+    //EM ANDAMENTO ATRASADO
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
+            if ($("#tableItmEmAndAtrasado").length) {
+                $("#tableItmEmAndAtrasado").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                      {
+                          extend: "copy",
+                          className: "btn-sm btn-info",
+                          text: "Copiar"
+                      },
+                      {
+                          extend: "excel",
+                          className: "btn-sm btn-success",
+                          text: "Exportar excel"
+                      },
+                      {
+                          extend: "pdfHtml5",
+                          className: "btn-sm btn-warning",
+                          text: "Gerar PDF"
+                      },
+                      {
+                          extend: "print",
+                          className: "btn-sm btn-primary",
+                          text: " Imprimir"
+                      },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+    });
+
+    //PAUSADO
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
+            if ($("#tableItmPausa").length) {
+                $("#tableItmPausa").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                      {
+                          extend: "copy",
+                          className: "btn-sm btn-info",
+                          text: "Copiar"
+                      },
+                      {
+                          extend: "excel",
+                          className: "btn-sm btn-success",
+                          text: "Exportar excel"
+                      },
+                      {
+                          extend: "pdfHtml5",
+                          className: "btn-sm btn-warning",
+                          text: "Gerar PDF"
+                      },
+                      {
+                          extend: "print",
+                          className: "btn-sm btn-primary",
+                          text: " Imprimir"
+                      },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+    });
+
+    //FINALIZADOS
+    $(document).ready(function () {
+        var handleDataTableButtons = function () {
+            if ($("#tableItmEncerrado").length) {
+                $("#tableItmEncerrado").DataTable({
+                    dom: "Bfrtip",
+                    buttons: [
+                      {
+                          extend: "copy",
+                          className: "btn-sm btn-info",
+                          text: "Copiar"
+                      },
+                      {
+                          extend: "excel",
+                          className: "btn-sm btn-success",
+                          text: "Exportar excel"
+                      },
+                      {
+                          extend: "pdfHtml5",
+                          className: "btn-sm btn-warning",
+                          text: "Gerar PDF"
+                      },
+                      {
+                          extend: "print",
+                          className: "btn-sm btn-primary",
+                          text: " Imprimir"
+                      },
+                    ],
+                    responsive: true
+                });
+            }
+        };
+
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons();
+                }
+            };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+            keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+            ajax: "js/datatables/json/scroller-demo.json",
+            deferRender: true,
+            scrollY: 380,
+            scrollCollapse: true,
+            scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+            fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+            'order': [[1, 'asc']],
+            'columnDefs': [
+              { orderable: false, targets: [0] }
+            ]
+        });
+        $datatable.on('draw.dt', function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_flat-green'
+            });
+        });
+
+        TableManageButtons.init();
+    });
+</script>

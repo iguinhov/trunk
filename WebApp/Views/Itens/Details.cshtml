@@ -1,0 +1,119 @@
+﻿@model Model.modItens
+
+@{
+    ViewBag.Title = "Detalhes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="x_panel">
+            <h4>Detalhes do Item</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.nomeProjeto, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.nomeProjeto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @style = "color:red; text-align: center; font:bold;" } })
+                            @Html.ValidationMessageFor(model => model.nomeProjeto, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idItem, htmlAttributes: new { @class = "control-label" })                          
+                            @Html.EditorFor(model => model.idItem, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.idItem, "", new { @class = "text-danger" })                            
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.tituloItem, htmlAttributes: new { @class = "control-label" })                           
+                            @Html.EditorFor(model => model.tituloItem, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.tituloItem, "", new { @class = "text-danger" })                            
+                        </div>                        
+                    </div>
+
+                    <br /><br /><br /><br />
+
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.NomeSolicitante, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.NomeSolicitante, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.NomeSolicitante, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idDepartamento, htmlAttributes: new { @class = "control-label" })                           
+                            @Html.DropDownListFor(model => model.idDepartamento, (SelectList)ViewBag.Departamento, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.idDepartamento, "", new { @class = "text-danger" })                           
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.dtAbertura, htmlAttributes: new { @class = "control-label" })                          
+                            @Html.TextBox("dtAbertura", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @style = "color:red; text-align: center; font:bold;" })
+                            @Html.ValidationMessageFor(model => model.dtAbertura, "", new { @class = "text-danger" })                        
+                        </div>
+                    </div>
+                    <br /><br /><br /><br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idTipoDesenv, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idTipoDesenv, (SelectList)ViewBag.TipoDesenvolvimento, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.idTipoDesenv, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idDev, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idDev, (SelectList)ViewBag.Desenvolvedor, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.idDev, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.dtProgramada, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBox("dtProgramada", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @style = "color:red; text-align: center; font:bold;" })
+                            @Html.ValidationMessageFor(model => model.dtProgramada, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <br /><br /><br /><br />
+                    <div class="form-group"> 
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.descicao, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.descicao, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @disabled = "disabled", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.descicao, "", new { @class = "text-danger" })
+                        </div>          
+                                            
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idStatus, htmlAttributes: new { @class = "control-label" })                           
+                            @Html.DropDownListFor(model => model.idStatus, (SelectList)ViewBag.Status, new { @class = "form-control", @disabled = "disabled" } )
+                            @Html.ValidationMessageFor(model => model.idStatus, "", new { @class = "text-danger" })                          
+                        </div>
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idPrioridade, htmlAttributes: new { @class = "control-label" })                            
+                            @Html.DropDownListFor(model => model.idPrioridade, (SelectList)ViewBag.Prioridade, new { @class = "form-control", @disabled = "disabled" })
+                            @Html.ValidationMessageFor(model => model.idPrioridade, "", new { @class = "text-danger" })                          
+                        </div>                                                            
+                    </div>
+               <div class="clearfix"></div>              
+                </form>
+                <br />
+             
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">              
+
+                    <button type="button" onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-info">
+                        <span class="glyphicon glyphicon-backward"></span> Voltar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

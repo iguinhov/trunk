@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Pesquisa Item Finalizado Por Desenvolvedor";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="x_panel">
+            <h4>Pesquisa por desenvolvedor</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Selecione um desenvolvedor", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownList("id", (SelectList)ViewBag.Desenvolvedor, new { @class = "form-control" })
+                            @Html.ValidationMessage("id", "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 3px;">
+                            <br />
+                            <button type="submit" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-search"></span> Pesquisar
+                            </button>
+
+                            <button type="button" onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-dark">
+                                <span class="glyphicon glyphicon-backward"></span> Voltar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

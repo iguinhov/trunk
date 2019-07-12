@@ -1,0 +1,42 @@
+﻿@model Model.modDesenvolvedores
+
+@{
+    ViewBag.Title = "Editar desenvolvedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="x_panel">
+            <h4>Remover desenvolvedor</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="col-xs-4">
+                        @Html.LabelFor(model => model.nomeCompleto, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.nomeCompleto, new { htmlAttributes = new { @class = "form-control", @disabled= "disabled" } })
+                        @Html.ValidationMessageFor(model => model.nomeCompleto, "", new { @class = "text-danger" })
+                    </div>
+                    <br />
+                    <div class="col-xs-4" style="padding-top: 4px;">
+                        <button type="submit" class="btn btn-dark">
+                            <span class="glyphicon glyphicon-edit"></span> Remover
+                        </button>
+
+                        <button type="button" onclick="location.href='@Url.Action("Index", "Desenvolvedores")'" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-backward"></span> Voltar
+                        </button>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

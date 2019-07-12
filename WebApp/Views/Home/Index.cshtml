@@ -1,0 +1,326 @@
+﻿@model IEnumerable<Model.modItensPorDesenvolvedorLogin>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .box {            
+             float: left;
+             height: 100%;/*Altura da linha*/
+             border: 1px solid #b6ff00;
+             background-color: #ffffff;
+        }
+</style>
+
+<div class="col-xs-12">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <h3>Lista itens em aberto para : - <small><b>@Session["NomeLogin"]</b></small></h3>
+        <div class="x_title">
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tableDash" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Projeto")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Versão")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Abertura")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Programado")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Prioridade")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Título")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th style="text-align:center">
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="color:red;">
+                            @Html.DisplayFor(modelItem => item.projeto)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.idItem)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.nmVersao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.solicitante)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.dtAbertura)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.dtProgramada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.prioridade)
+                        </td>
+                        <td align="center">
+                            @Html.DisplayFor(modelItem => item.titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descricao)
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Ver Detalhes", "Details", "Itens", new { id = item.idItem }, new { @class = "btn btn-sm btn-info" })
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Alterar", "AtualizaStatus", "Itens", new { id = item.idItem }, new { @class = "btn btn-sm btn-warning" })
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Encerrar", "FinalizarItem", "Itens", new { id = item.idItem }, new { @class = "btn btn-sm btn-danger" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-4">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="x_title">
+            <h3> Itens em aberto por desenvolvedor <small> - total </small></h3>
+        </div>
+        <div class="x_content">
+            <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-4">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="x_title">
+            <h3> Itens encerrados por desenvolvedor <small> -<a href="~/Itens/PesquisaItensFinalizadosDesenvolvedor"> <u>ver detalhes</u></a></small></h3>
+        </div>
+        <div class="x_content">
+            <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+
+            <div id="chartEncerrados" style="height: 300px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-4">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="x_title">
+            <h3> Quantidade total por tipo status <small> -<a href="~/Itens/PesquisaItemPorStatus"> <u>ver detalhes</u></a></small></h3>
+        </div>
+        <div class="x_content">
+            <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;"></iframe>
+
+            <div id="chartStatus" style="height: 300px; width: 100%;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-6">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <div class="x_title">
+            <h3>
+                Chat <small>
+                    - Login: <input type="text" name="apelido" id="apelido" value="@Session["NomeLogin"]" disabled="disabled"
+                                    style="text-align:center; color:blueviolet" />
+                </small>
+            </h3>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-4">
+                <div class="box" style="padding-bottom: 0px;
+                                        padding-top: 11px;
+                                        height: 313px;
+                                        margin-top: 7px;
+                                        width: 172px;
+                                        background-color: #ffffff;
+                                        border: 1px solid #808080;
+                                        ">
+                    @Html.Label("Online:", new { @class = "control-label", @style = "color: green;" })
+                    <hr />                       
+                           <ul>
+                               @foreach (var i in @ViewBag.usuLogados)
+                               {
+                                    <li style="color:#19ad2c"><i style="color:grey;">@i</i></li>
+                               }                                
+                           </ul>                     
+                </div> 
+            </div>         
+       
+            <div class="col-xs-8">
+                <label for="mensagem">Mensagem:</label> <input type="text" name="mensagem" id="mensagem" maxlength="100" class="form-control col-xs-1" />
+                <div class="clearfix"></div>
+                <br />
+                <div id="chatWindow" style="width: 99%; height: 245px; overflow: scroll; border: 1px solid grey" class="form-control"></div>            
+            </div>
+       </div>
+    </div>
+</div>
+
+<script src="~/scripts/jquery.canvasjs.min.js"></script>
+<script src="~/scripts/canvasjs.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    // ****     GRÁFICOS DASHBOARD      ******
+    $(function () {
+
+        var result = @Html.Raw(ViewBag.GrafItensDesenvolvedor);
+        var dataPoints = [];
+        for(var i = 0; i < result.length; i++){
+            dataPoints.push({label:result[i].desenvolvedor, y:result[i].quantidade});
+        }
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            theme: "theme1",
+            zoomEnabled: true,
+            animationEnabled: true,
+
+            data: [
+            {
+                type: "column",
+
+                dataPoints: dataPoints,
+            }
+            ]
+        });
+        chart.render();
+    });
+
+    //Itens encerrados
+    $(function () {
+
+        var result = @Html.Raw(ViewBag.itensEncerradosDesenvolvedor);
+        var dataPoints = [];
+        for(var i = 0; i < result.length; i++){
+            dataPoints.push({label:result[i].desenvolvedor, y:result[i].quantidade});
+        }
+
+        var chart = new CanvasJS.Chart("chartEncerrados", {
+            theme: "theme1",
+            zoomEnabled: true,
+            animationEnabled: true,
+
+
+            data: [
+            {
+                type: "doughnut",
+                dataPoints: dataPoints,
+            }
+            ]
+        });
+        chart.render();
+    });
+
+    //Quantidade por status
+    $(function () {
+
+        var result = @Html.Raw(ViewBag.qntdStatus);
+        var dataPoints = [];
+        for(var i = 0; i < result.length; i++){
+            dataPoints.push({label:result[i].status, y:result[i].quantidade});
+        }
+
+        var chart = new CanvasJS.Chart("chartStatus", {
+
+            legend:{
+                verticalAlign: "center",
+                horizontalAlign: "left",
+                fontSize: 12
+            },
+
+            theme: "theme2",
+            zoomEnabled: true,
+            animationEnabled: true,
+            toolTipContent: "status",
+
+            data: [
+            {
+                type: "pie",
+                indexLabelFontSize: 13,
+                indexLabel: "{label} {y}",
+
+                dataPoints: dataPoints,
+            }
+            ]
+        });
+        chart.render();
+    });
+</script>

@@ -1,0 +1,72 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>@ViewBag.Title</title>
+
+    <meta charset="utf-8" />
+
+    @Styles.Render("~/Content/style.css")
+    @Styles.Render("~/Content/form-elements.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
+
+</head>
+<body>
+    <div class="top-content">
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-lg-offset-2 text">
+                        <h1>
+                            <strong>Ordem de Serviço - Sistemas</strong>
+                        </h1>
+                        <div class="description">
+                            <p>Para acesso ao sistema, digite as credenciais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 7%;">
+                    <div class="col-sm-6 col-lg-offset-3 form-box" style="width: 43%; height:43%;">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Acesso ao ambiente.</h3>
+                                <p>Digite seu usuário e senha:</p>
+                            </div>
+                            <div class="form-top-right">
+                                <img src="~/Images/ituran_pb.jpg" />
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <form role="form" class="login-form">
+                                <div class="form-group">
+
+                                    @RenderBody()
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+
+    <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px;
+                 height: 1014px; width: 1920px; z-index: -999999; position: fixed;">
+
+        <img src="~/Images/LoginOS.jpg" class="img-responsive" style="position: absolute; margin: 0px; padding: 0px;
+                 border:none; max-height: none; max-width: none; z-index: -999999; left: 0px; top: 0px;" />
+    </div>
+
+    <footer>
+        <p style="color:lightgrey">&copy; @DateTime.Now.Year - Ituran Sistemas de Monitoramento LTDA.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿@model Model.modSistemasProjeto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>modSistemasProjeto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.idProjeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProjeto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeProjeto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeProjeto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

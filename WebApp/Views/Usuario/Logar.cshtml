@@ -1,0 +1,89 @@
+﻿@model Model.modUsuarios
+
+@{
+    ViewBag.Title = "Logar";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm("LogOn", "Usuarios", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <form class="form-group" id="formSenha">
+        @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-username form-control", @placeholder = "Digite o login" } })
+
+
+        <br />
+
+        @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @class = "form-password form-control", @placeholder = "Digite a senha" } })  
+
+        <br />
+        <br />
+        
+        <input type="submit" value="LOGAR" class="btn btn-danger"
+               style="height: 50px; width:99%; vertical-align: middle;
+                                    margin: 0;padding: 0 20px;vertical-align: middle;
+                                    background: #4aaf51;
+                                    border: 0;
+                                    font:bold;
+                                    margin-top: -10px;
+                                    font-family: 'Roboto', sans-serif;
+                                    font-size: 16px;
+                                    font-weight: 300;
+                                    line-height: 50px;
+                                    color: #fff;
+                                    -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+                                    text-shadow: none;
+                                    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+                                    background: #ff6a00;" />    
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modalCboTranf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header modal-header-success" style="background-color: cadetblue;">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel" style="color: white; text-align:center">ATENÇÃO !!!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group" style="align-items:center">
+                                <div class="col-xs-7">
+                                    <label style="padding-left: 5%; color:red;">@ViewBag.Erro</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ####  // Modal // #### -->  
+    </form>
+}
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    if (new String("@ViewBag.Erro") != ""){
+
+        $(document).ready(function () {
+            $('#modalCboTranf').modal('show');
+        });
+    }
+
+    $(document).ready(function () {
+        $('input').keypress(function (e) {
+            var s = String.fromCharCode(e.which);
+
+            if ((s.toUpperCase() === s && s.toLowerCase() !== s && !e.shiftKey) ||
+               (s.toUpperCase() !== s && s.toLowerCase() === s && e.shiftKey)) {
+                if ($('#capsalert').length < 1) $(this).after('<div class="col-md-4"><p><b style="color:blue; text-align:center;" id="capsalert">CapsLock on.</b></p></div>');
+            } else {
+                if ($('#capsalert').length > 0) $('#capsalert').remove();
+            }
+        });
+    });
+</script>

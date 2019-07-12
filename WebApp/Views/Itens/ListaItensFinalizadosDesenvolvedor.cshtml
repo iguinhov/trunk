@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Model.modItensListasPorStatus>
+
+@{
+    ViewBag.Title = "Lista Itens Finalizados Por Desenvolvedor";
+   
+}
+
+<div class="col-xs-12">
+    <div class="x_panel">
+        <h3>Resultado da Pesquisa</h3>
+        <button type="button" onclick="location.href='@Url.Action("PesquisaItensFinalizadosDesenvolvedor", "Itens")'" class="btn btn-dark"
+                style="margin-left: 86.5%; margin-top: -3%;">
+            <span class="glyphicon glyphicon-backward"></span> Voltar para pesquisa
+        </button>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tablePesquisa" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Projeto")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Versão")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Solicitante")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Título")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Desenvolvedor")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Status")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Abertura")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Programada")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Encerrado")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Descrição")
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.projeto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nmVersao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.solicitante)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idItem)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.titulo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.desenvolvedor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dtCadastro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dtProgramada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dtFinalizado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descricao)
+                        </td>                        
+                        <td align="center">
+                            @Html.ActionLink("Ver Detalhes", "ItemFinalizadoDetalhe", "Itens", new { id = item.idItem }, new { @class = "btn btn-sm btn-danger" })
+                        </td>                      
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

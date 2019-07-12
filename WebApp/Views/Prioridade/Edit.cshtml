@@ -1,0 +1,47 @@
+﻿@model Model.modPrioridade
+
+@{
+    ViewBag.Title = "Prioridade Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="row">
+        <div class="x_panel">
+            <h4>Alterar Prioridade</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })         
+
+                    <div class="col-xs-4">
+                        @Html.LabelFor(model => model.descricao, htmlAttributes: new { @class = "control-label" })                       
+                            @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })                      
+                    </div>
+
+                    <br />
+
+                    <div class="col-xs-4" style="padding-top: 4px;">
+                        <button type="submit" class="btn btn-dark">
+                            <span class="glyphicon glyphicon-edit"></span> Salvar
+                        </button>
+
+                        <button type="button" onclick="location.href='@Url.Action("Index", "Prioridade")'" class="btn btn-warning">
+                            <span class="glyphicon glyphicon-backward"></span> Voltar
+                        </button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

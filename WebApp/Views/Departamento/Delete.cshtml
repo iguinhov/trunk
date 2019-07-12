@@ -1,0 +1,41 @@
+﻿@model Model.modDepartamento
+
+@{
+    ViewBag.Title = "Remover Departamento";
+}
+
+
+<div class="row">
+    <div class="x_panel">
+        <h4>Remover Departamento</h4>
+        <hr />
+        <div class="x_content">         
+                <dl class="form-horizontal form-label-left input_mask form-group has-feedback col-xs-4">             
+                <dt>
+                    @Html.DisplayNameFor(model => model.nome)
+                </dt>
+                    
+                <dd>
+                    <br />
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <br />
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span> Remover
+                            </button>
+
+                            <button type="button" onclick="location.href='@Url.Action("Index", "Departamento")'" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-backward"></span> Voltar
+                            </button>
+                        </div>                   
+                }               
+        </div>
+     </div>
+ </div>

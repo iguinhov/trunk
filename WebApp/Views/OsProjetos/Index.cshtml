@@ -1,0 +1,160 @@
+﻿@model IEnumerable<Model.modProjetoEmDesenvolvimento>
+
+@{
+    ViewBag.Title = "Lista ordens de serviço";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <h3>Lista Projetos - <small><b style="color: green;">em aberto</b></small></h3>        
+        <div class="x_title">            
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tabAbertos" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("OS")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idProjeto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nmVersao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dtCadastro)
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayNameFor(model => model.flEncerrado)
+                        </th>                       
+                        <th style="text-align:center">
+                            @Html.DisplayName("Alterar/Finalizar")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Adicionar Item")
+                        </th>
+                        <th style="text-align:center">
+                            @Html.DisplayName("Ver todos os itens da OS")
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    if(item.flEncerrado == false) { 
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idNmSolitacao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nomeProjeto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nmVersao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dtCadastro)
+                        </td>
+                        <td align="center">
+                            @Html.Label("NÃO")
+                        </td>           
+                        <td align="center">                          
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idNmSolitacao }, new { @class = "btn btn-sm btn-warning" })                                                   
+                        </td>
+                        <td align="center">                           
+                           @Html.ActionLink("Novo", "Create", "Itens",new { id = item.idNmSolitacao }, new { @class = "btn btn-sm btn-dark" })                          
+                        </td>
+                        <td align="center">
+                            @Html.ActionLink("Listar", "ListaItensDaOs", new { id = item.idNmSolitacao }, new { @class = "btn btn-sm btn-danger" })
+                        </td>
+                    </tr>
+                    }                    
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul>
+        <h3>Lista Projetos - <small><b style="color:red;">finalizados</b></small></h3>        
+        <div class="x_title">            
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="tabEncerrados" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("OS")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idProjeto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nmVersao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dtCadastro)
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayNameFor(model => model.flEncerrado)
+                        </th>                       
+                        <th style="text-align:center">
+                            @Html.DisplayName("Ver todos os itens da OS")
+                        </th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    if (item.flEncerrado == true)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idNmSolitacao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nomeProjeto)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nmVersao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.dtCadastro)
+                            </td>
+                            <td align="center"> 
+                                @Html.Label("SIM")                              
+                            </td>                           
+                            <td align="center">
+                                @Html.ActionLink("Listar", "ListaItensDaOsFinalizada", new { id = item.idNmSolitacao }, new { @class = "btn btn-sm btn-dark" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+﻿@model Model.modItens
+
+@{
+    ViewBag.Title = "Novo Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Itens", FormMethod.Post, new { @id="_AjaxForm", @enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="x_panel">
+            <h4>Novo Item</h4>
+            <hr />
+            <div class="x_content">
+                <form class="form-horizontal form-label-left input_mask form-group has-feedback">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.Label("Projeto", htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.nomeProjeto, null, htmlAttributes : new { @class = "form-control", @disabled="disabled", @style="color:red; text-align: center; font:bold;" })
+                            @Html.ValidationMessageFor(model => model.idNmSolicitacao, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.NomeSolicitante, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.NomeSolicitante, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NomeSolicitante, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idDepartamento, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idDepartamento, (SelectList)ViewBag.Departamento, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idDepartamento, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                        <br />
+                            <br />
+                                <br />
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.tituloItem, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.tituloItem, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tituloItem, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.dtProgramada, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.dtProgramada, new { htmlAttributes = new { @class = "form-control", @id= "dtProg" } })
+                            @Html.ValidationMessageFor(model => model.dtProgramada, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idTipoDesenv, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idTipoDesenv, (SelectList)ViewBag.TipoDesenvolvimento, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idTipoDesenv, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                        <br />
+                            <br />
+                                <br />
+                    <div class="form-group">                       
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idDev, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idDev, (SelectList)ViewBag.Desenvolvedor, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idDev, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idStatus, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idStatus, (SelectList)ViewBag.Status, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idStatus, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.idPrioridade, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.idPrioridade, (SelectList)ViewBag.Prioridade, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.idPrioridade, "", new { @class = "text-danger" })
+                        </div> 
+                    </div>
+                    <br />
+                        <br />
+                            <br />
+                                <br />
+                                      <br />
+                    <div class="form-group">                    
+                        <div class="col-xs-4">
+                            @Html.LabelFor(model => model.descicao, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.descicao, htmlAttributes: new { @class = "form-control", @rows = "22", @cols = "36", @style = "resize: none;" })
+                            @Html.ValidationMessageFor(model => model.descicao, "", new { @class = "text-danger" })
+                        </div> 
+
+                        @*<div class="col-xs-6">
+                            @Html.Label("Anexo", new { @class="control-label"})      
+                            <br />                    
+                            <span class="btn btn-dark fileinput-button">                      
+                                <input type="file" id="file" name="files[]" multiple /> 
+                            </span>                                                     
+                        </div>*@
+                    </div>
+                    <div class="clearfix"></div>                     
+                </form>
+                <br /> 
+                <br />                
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-floppy-disk"></span> Salvar
+                    </button>
+
+                    <button type="button" onclick="location.href='@Url.Action("Index", "OsProjetos")'" class="btn btn-info">
+                        <span class="glyphicon glyphicon-backward"></span> Voltar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+ <!-- Modal -->
+<div class="modal fade" id="modalSaveSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-success" style="background-color: cadetblue;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color: white; text-align:center">ATENÇÃO !!!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group" style="align-items:center">
+                        <div class="col-xs-7">
+                            <label style="padding-left: 5%;" class="control-label">@ViewBag.Mensagem</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("OK", "Index", "OsProjetos", "", new { @class="btn btn-success"})
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ####  // Modal // #### -->  
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="https://momentjs.com/downloads/moment.min.js" type="text/javascript"></script>
+<script src="https://momentjs.com/downloads/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+        $("#dtProg").datetimepicker(
+            {
+                showTodayButton: true,
+                format: 'YYYY-MM-DD HH:mm',
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+            });
+
+        if (new String("@ViewBag.Mensagem") != ""){
+
+            $(document).ready(function () {
+                $('#modalSaveSuccess').modal('show');
+            });
+        }
+
+</script>

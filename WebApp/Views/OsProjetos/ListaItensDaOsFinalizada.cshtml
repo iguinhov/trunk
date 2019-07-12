@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Model.modItensPorOrdemServico>
+
+@{
+    ViewBag.Title = "Lista itens do projeto";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <h3>Lista Todos os itens da ordem de serviço - <small>item</small></h3>
+        <div class="x_title">
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li>
+                    <a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="x_content">
+            <div id="datatable_filter" class="dataTables_filter">
+            </div><table id="datatableUser" class="table table-responsive dataTable table-bordered table-striped"
+                         role="grid" aria-describedby="datatable_info">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idNmSolitacao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idProjeto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nmVersao)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.dtCadastro)
+                        </th>
+                        <th>
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NomeSolicitante)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idDepartamento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idDev)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idStatus)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idPrioridade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.descicao)
+                        </th>
+                        <th style="text-align:center;">
+                            @Html.DisplayName("Visualizar")
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idNmSolitacao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idProjeto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nmVersao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dtCadastro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idItem)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomeSolicitante)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idDepartamento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idDev)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idPrioridade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descicao)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Detalhes", "ItemFinalizadoDetalhe", "Itens", new { id = item.idItem }, new { @class = "btn btn-sm btn-dark" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <button type="button" onclick="location.href='@Url.Action("Index", "OsProjetos")'" class="btn btn-sm btn-info">
+            <span class="glyphicon glyphicon-backward"></span> Voltar
+        </button>
+
+    </div>
+</div>

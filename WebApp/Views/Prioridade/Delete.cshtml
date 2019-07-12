@@ -1,0 +1,42 @@
+﻿@model Model.modPrioridade
+
+@{
+    ViewBag.Title = "Remover prioridade";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="x_panel">
+        <h4>Remover prioridade</h4>
+        <hr />
+        <div class="x_content">
+            <dl class="form-horizontal form-label-left input_mask form-group has-feedback col-xs-4">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.descricao)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.descricao)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <br />
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span> Remover
+                    </button>
+
+                    <button type="button" onclick="location.href='@Url.Action("Index", "Prioridade")'" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-backward"></span> Voltar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

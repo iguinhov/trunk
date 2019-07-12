@@ -1,0 +1,1094 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_OS_SISTEMASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="ID_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_DEPARTAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="TB_DESENVOLVEDORES">
+          <Key>
+            <PropertyRef Name="ID_DEV" />
+          </Key>
+          <Property Name="ID_DEV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="NOME_DESENVOLVEDOR" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TB_ITENS_FINALIZADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ITEM" Type="int" />
+          <Property Name="ID_NM_SOLICITACAO" Type="int" />
+          <Property Name="DT_FINALIZADO" Type="datetime" />
+          <Property Name="ID_DESENVOLVEDOR_ITEM" Type="int" />
+          <Property Name="ID_USUARIO_LOGADO" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="TB_LOGON_SISTEMA">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="DT_LOGON" Type="datetime" />
+          <Property Name="FL_USUARIO_LOGADO" Type="bit" />
+        </EntityType>
+        <EntityType Name="TB_PRIORIDADE_ITEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRIORIDADE_TIPO" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_DESENVOLVEDORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_NM_SOLICITACAO" Type="int" />
+          <Property Name="ID_DEV" Type="int" />
+          <Property Name="DT_CADASTRO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_NM_SOLICITACAO" />
+          </Key>
+          <Property Name="ID_NM_SOLICITACAO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROJETO" Type="int" />
+          <Property Name="NM_VERSAO_ATUAL" Type="nvarchar" MaxLength="12" />
+          <Property Name="DT_CADASTRO" Type="datetime" />
+          <Property Name="FL_ENCERRADO" Type="bit" />
+          <Property Name="DT_FINALIZADO" Type="datetime" />
+          <Property Name="NM_VERSAO_FINAL" Type="nvarchar" MaxLength="12" />
+          <Property Name="FL_COMMIT_SOLUTION" Type="bit" />
+          <Property Name="FL_VS_EM_PROD" Type="bit" />
+          <Property Name="DT_PUBLICACAO" Type="date" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_ITENS">
+          <Key>
+            <PropertyRef Name="ID_ITEM" />
+          </Key>
+          <Property Name="ID_ITEM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_NM_SOLICITACAO" Type="int" />
+          <Property Name="NOME_SOLICITANTE" Type="varchar" MaxLength="150" />
+          <Property Name="ID_DEPARTAMENTO" Type="int" />
+          <Property Name="DT_ABERTURA" Type="datetime" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="450" />
+          <Property Name="ID_DEV" Type="int" />
+          <Property Name="ID_TIPO_DESENV" Type="int" />
+          <Property Name="ID_STATUS" Type="int" />
+          <Property Name="CAMADAS_METODOS_DESCRICAO" Type="varchar(max)" />
+          <Property Name="PROCEDURES_NOMES" Type="varchar" MaxLength="450" />
+          <Property Name="DESCRICAO_DESENVOLVIMENTO" Type="varchar" MaxLength="250" />
+          <Property Name="DT_TERMINO" Type="datetime" />
+          <Property Name="FL_COMMIT_ITEM" Type="bit" />
+          <Property Name="TOTAL_HRS_ITEM" Type="time" Precision="7" />
+          <Property Name="FL_ITEM_ENCERRADO" Type="bit" />
+          <Property Name="DT_PUBLICACAO" Type="datetime" />
+          <Property Name="ID_PRIORIDADE" Type="int" />
+        </EntityType>
+        <EntityType Name="TB_PROJETOS_FINALIZADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_NM_SOLICITACAO" Type="int" />
+          <Property Name="DT_FINALIZADO" Type="datetime" />
+          <Property Name="ID_USUARIO_LOGADO" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="TB_PROJETOS_SISTEMAS">
+          <Key>
+            <PropertyRef Name="ID_PROJETO" />
+          </Key>
+          <Property Name="ID_PROJETO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME_PROJETO" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_STATUS_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_STATUS" />
+          </Key>
+          <Property Name="ID_STATUS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DESENV" />
+          </Key>
+          <Property Name="ID_TIPO_DESENV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_USUARIO" />
+          </Key>
+          <Property Name="ID_TIPO_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRICAO" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TB_USUARIOS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="150" />
+          <Property Name="ID_DEPARTAMENTO" Type="int" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+          <Property Name="LOGIN" Type="varchar" MaxLength="60" />
+          <Property Name="SENHA" Type="varchar" MaxLength="100" />
+          <Property Name="DT_CADASTRO" Type="datetime" />
+          <Property Name="ID_TIPO_USUARIO" Type="int" />
+          <Property Name="FL_ATIVO" Type="bit" />
+          <Property Name="FL_DESENVOLVEDOR" Type="bit" />
+          <Property Name="DT_ALTERACAO" Type="datetime" />
+          <Property Name="IMG_PERFIL" Type="image" />
+        </EntityType>
+        <Association Name="FK__TB_DESENV__ID_US__35BCFE0A">
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="0..1" />
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ITENS___ID_DE__797309D9">
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Role="TB_ITENS_FINALIZADOS" Type="Self.TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_DESENVOLVEDOR_ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ITENS___ID_IT__787EE5A0">
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="0..1" />
+          <End Role="TB_ITENS_FINALIZADOS" Type="Self.TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_ITEM" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ITENS___ID_NM__7A672E12">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_ITENS_FINALIZADOS" Type="Self.TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGON___ID_US__44FF419A">
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="0..1" />
+          <End Role="TB_LOGON_SISTEMA" Type="Self.TB_LOGON_SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_LOGON_SISTEMA">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_DE__398D8EEE">
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVEDORES" Type="Self.TB_PROJETO_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_DE__3F466844">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_DE__403A8C7D">
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_DEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__38996AB5">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVEDORES" Type="Self.TB_PROJETO_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVEDORES">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__3E52440B">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__7E37BEF6">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETOS_FINALIZADOS" Type="Self.TB_PROJETOS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETOS_FINALIZADOS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_PR__14270015">
+          <End Role="TB_PRIORIDADE_ITEM" Type="Self.TB_PRIORIDADE_ITEM" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PRIORIDADE_ITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_PRIORIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_PR__25869641">
+          <End Role="TB_PROJETOS_SISTEMAS" Type="Self.TB_PROJETOS_SISTEMAS" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETOS_SISTEMAS">
+              <PropertyRef Name="ID_PROJETO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_PROJETO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_ST__4222D4EF">
+          <End Role="TB_STATUS_DESENVOLVIMENTO" Type="Self.TB_STATUS_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_STATUS_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_STATUS" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_TI__412EB0B6">
+          <End Role="TB_TIPO_DESENVOLVIMENTO" Type="Self.TB_TIPO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_TIPO_DESENV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_TIPO_DESENV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_DE__31EC6D26">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="TB_USUARIOS">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_TI__32E0915F">
+          <End Role="TB_TIPO_USUARIO" Type="Self.TB_TIPO_USUARIO" Multiplicity="0..1" />
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIOS">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_OS_SISTEMASModelStoreContainer">
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="Self.TB_DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_DESENVOLVEDORES" EntityType="Self.TB_DESENVOLVEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_ITENS_FINALIZADOS" EntityType="Self.TB_ITENS_FINALIZADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_LOGON_SISTEMA" EntityType="Self.TB_LOGON_SISTEMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PRIORIDADE_ITEM" EntityType="Self.TB_PRIORIDADE_ITEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJETO_DESENVOLVEDORES" EntityType="Self.TB_PROJETO_DESENVOLVEDORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJETO_DESENVOLVIMENTO" EntityType="Self.TB_PROJETO_DESENVOLVIMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJETO_ITENS" EntityType="Self.TB_PROJETO_ITENS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJETOS_FINALIZADOS" EntityType="Self.TB_PROJETOS_FINALIZADOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_PROJETOS_SISTEMAS" EntityType="Self.TB_PROJETOS_SISTEMAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_STATUS_DESENVOLVIMENTO" EntityType="Self.TB_STATUS_DESENVOLVIMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPO_DESENVOLVIMENTO" EntityType="Self.TB_TIPO_DESENVOLVIMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TB_USUARIOS" EntityType="Self.TB_USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TB_DESENV__ID_US__35BCFE0A" Association="Self.FK__TB_DESENV__ID_US__35BCFE0A">
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ITENS___ID_DE__797309D9" Association="Self.FK__TB_ITENS___ID_DE__797309D9">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ITENS___ID_IT__787EE5A0" Association="Self.FK__TB_ITENS___ID_IT__787EE5A0">
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ITENS___ID_NM__7A672E12" Association="Self.FK__TB_ITENS___ID_NM__7A672E12">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGON___ID_US__44FF419A" Association="Self.FK__TB_LOGON___ID_US__44FF419A">
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+            <End Role="TB_LOGON_SISTEMA" EntitySet="TB_LOGON_SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__398D8EEE" Association="Self.FK__TB_PROJET__ID_DE__398D8EEE">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_PROJETO_DESENVOLVEDORES" EntitySet="TB_PROJETO_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__3F466844" Association="Self.FK__TB_PROJET__ID_DE__3F466844">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__403A8C7D" Association="Self.FK__TB_PROJET__ID_DE__403A8C7D">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__38996AB5" Association="Self.FK__TB_PROJET__ID_NM__38996AB5">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_DESENVOLVEDORES" EntitySet="TB_PROJETO_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__3E52440B" Association="Self.FK__TB_PROJET__ID_NM__3E52440B">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__7E37BEF6" Association="Self.FK__TB_PROJET__ID_NM__7E37BEF6">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETOS_FINALIZADOS" EntitySet="TB_PROJETOS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_PR__14270015" Association="Self.FK__TB_PROJET__ID_PR__14270015">
+            <End Role="TB_PRIORIDADE_ITEM" EntitySet="TB_PRIORIDADE_ITEM" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_PR__25869641" Association="Self.FK__TB_PROJET__ID_PR__25869641">
+            <End Role="TB_PROJETOS_SISTEMAS" EntitySet="TB_PROJETOS_SISTEMAS" />
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_ST__4222D4EF" Association="Self.FK__TB_PROJET__ID_ST__4222D4EF">
+            <End Role="TB_STATUS_DESENVOLVIMENTO" EntitySet="TB_STATUS_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_TI__412EB0B6" Association="Self.FK__TB_PROJET__ID_TI__412EB0B6">
+            <End Role="TB_TIPO_DESENVOLVIMENTO" EntitySet="TB_TIPO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_DE__31EC6D26" Association="Self.FK__TB_USUARI__ID_DE__31EC6D26">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_TI__32E0915F" Association="Self.FK__TB_USUARI__ID_TI__32E0915F">
+            <End Role="TB_TIPO_USUARIO" EntitySet="TB_TIPO_USUARIO" />
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_OS_SISTEMASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TB_DEPARTAMENTO">
+          <Key>
+            <PropertyRef Name="ID_DEPARTAMENTO" />
+          </Key>
+          <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="Self.FK__TB_PROJET__ID_DE__3F466844" FromRole="TB_DEPARTAMENTO" ToRole="TB_PROJETO_ITENS" />
+          <NavigationProperty Name="TB_USUARIOS" Relationship="Self.FK__TB_USUARI__ID_DE__31EC6D26" FromRole="TB_DEPARTAMENTO" ToRole="TB_USUARIOS" />
+        </EntityType>
+        <EntityType Name="TB_DESENVOLVEDORES">
+          <Key>
+            <PropertyRef Name="ID_DEV" />
+          </Key>
+          <Property Name="ID_DEV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="NOME_DESENVOLVEDOR" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_USUARIOS" Relationship="Self.FK__TB_DESENV__ID_US__35BCFE0A" FromRole="TB_DESENVOLVEDORES" ToRole="TB_USUARIOS" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVEDORES" Relationship="Self.FK__TB_PROJET__ID_DE__398D8EEE" FromRole="TB_DESENVOLVEDORES" ToRole="TB_PROJETO_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="Self.FK__TB_PROJET__ID_DE__403A8C7D" FromRole="TB_DESENVOLVEDORES" ToRole="TB_PROJETO_ITENS" />
+          <NavigationProperty Name="TB_ITENS_FINALIZADOS" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_DE__797309D9" FromRole="TB_DESENVOLVEDORES" ToRole="TB_ITENS_FINALIZADOS" />
+        </EntityType>
+        <EntityType Name="TB_LOGON_SISTEMA">
+          <Key>
+            <PropertyRef Name="ID_LOGIN" />
+          </Key>
+          <Property Name="ID_LOGIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="DT_LOGON" Type="DateTime" Precision="3" />
+          <Property Name="FL_USUARIO_LOGADO" Type="Boolean" />
+          <NavigationProperty Name="TB_USUARIOS" Relationship="Self.FK__TB_LOGON___ID_US__44FF419A" FromRole="TB_LOGON_SISTEMA" ToRole="TB_USUARIOS" />
+        </EntityType>
+        <EntityType Name="TB_PRIORIDADE_ITEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRIORIDADE_TIPO" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_PR__14270015" FromRole="TB_PRIORIDADE_ITEM" ToRole="TB_PROJETO_ITENS" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_DESENVOLVEDORES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_NM_SOLICITACAO" Type="Int32" />
+          <Property Name="ID_DEV" Type="Int32" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_DESENVOLVEDORES" Relationship="Self.FK__TB_PROJET__ID_DE__398D8EEE" FromRole="TB_PROJETO_DESENVOLVEDORES" ToRole="TB_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVIMENTO" Relationship="Self.FK__TB_PROJET__ID_NM__38996AB5" FromRole="TB_PROJETO_DESENVOLVEDORES" ToRole="TB_PROJETO_DESENVOLVIMENTO" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_NM_SOLICITACAO" />
+          </Key>
+          <Property Name="ID_NM_SOLICITACAO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROJETO" Type="Int32" />
+          <Property Name="NM_VERSAO_ATUAL" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="FL_ENCERRADO" Type="Boolean" />
+          <Property Name="DT_FINALIZADO" Type="DateTime" Precision="3" />
+          <Property Name="NM_VERSAO_FINAL" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="FL_COMMIT_SOLUTION" Type="Boolean" />
+          <Property Name="FL_VS_EM_PROD" Type="Boolean" />
+          <Property Name="DT_PUBLICACAO" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVEDORES" Relationship="Self.FK__TB_PROJET__ID_NM__38996AB5" FromRole="TB_PROJETO_DESENVOLVIMENTO" ToRole="TB_PROJETO_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="Self.FK__TB_PROJET__ID_NM__3E52440B" FromRole="TB_PROJETO_DESENVOLVIMENTO" ToRole="TB_PROJETO_ITENS" />
+          <NavigationProperty Name="TB_PROJETOS_SISTEMAS" Relationship="Self.FK__TB_PROJET__ID_PR__25869641" FromRole="TB_PROJETO_DESENVOLVIMENTO" ToRole="TB_PROJETOS_SISTEMAS" />
+          <NavigationProperty Name="TB_ITENS_FINALIZADOS" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_NM__7A672E12" FromRole="TB_PROJETO_DESENVOLVIMENTO" ToRole="TB_ITENS_FINALIZADOS" />
+          <NavigationProperty Name="TB_PROJETOS_FINALIZADOS" Relationship="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_NM__7E37BEF6" FromRole="TB_PROJETO_DESENVOLVIMENTO" ToRole="TB_PROJETOS_FINALIZADOS" />
+        </EntityType>
+        <EntityType Name="TB_PROJETO_ITENS">
+          <Key>
+            <PropertyRef Name="ID_ITEM" />
+          </Key>
+          <Property Name="ID_ITEM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_NM_SOLICITACAO" Type="Int32" />
+          <Property Name="NOME_SOLICITANTE" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEPARTAMENTO" Type="Int32" />
+          <Property Name="DT_ABERTURA" Type="DateTime" Precision="3" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEV" Type="Int32" />
+          <Property Name="ID_TIPO_DESENV" Type="Int32" />
+          <Property Name="ID_STATUS" Type="Int32" />
+          <Property Name="CAMADAS_METODOS_DESCRICAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PROCEDURES_NOMES" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRICAO_DESENVOLVIMENTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DT_TERMINO" Type="DateTime" Precision="3" />
+          <Property Name="FL_COMMIT_ITEM" Type="Boolean" />
+          <Property Name="TOTAL_HRS_ITEM" Type="Time" Precision="7" />
+          <Property Name="FL_ITEM_ENCERRADO" Type="Boolean" />
+          <Property Name="DT_PUBLICACAO" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_PROJET__ID_DE__3F466844" FromRole="TB_PROJETO_ITENS" ToRole="TB_DEPARTAMENTO" />
+          <NavigationProperty Name="TB_DESENVOLVEDORES" Relationship="Self.FK__TB_PROJET__ID_DE__403A8C7D" FromRole="TB_PROJETO_ITENS" ToRole="TB_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVIMENTO" Relationship="Self.FK__TB_PROJET__ID_NM__3E52440B" FromRole="TB_PROJETO_ITENS" ToRole="TB_PROJETO_DESENVOLVIMENTO" />
+          <NavigationProperty Name="TB_STATUS_DESENVOLVIMENTO" Relationship="Self.FK__TB_PROJET__ID_ST__4222D4EF" FromRole="TB_PROJETO_ITENS" ToRole="TB_STATUS_DESENVOLVIMENTO" />
+          <NavigationProperty Name="TB_TIPO_DESENVOLVIMENTO" Relationship="Self.FK__TB_PROJET__ID_TI__412EB0B6" FromRole="TB_PROJETO_ITENS" ToRole="TB_TIPO_DESENVOLVIMENTO" />
+          <Property Name="ID_PRIORIDADE" Type="Int32" />
+          <NavigationProperty Name="TB_PRIORIDADE_ITEM" Relationship="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_PR__14270015" FromRole="TB_PROJETO_ITENS" ToRole="TB_PRIORIDADE_ITEM" />
+          <NavigationProperty Name="TB_ITENS_FINALIZADOS" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_IT__787EE5A0" FromRole="TB_PROJETO_ITENS" ToRole="TB_ITENS_FINALIZADOS" />
+        </EntityType>
+        <EntityType Name="TB_PROJETOS_SISTEMAS">
+          <Key>
+            <PropertyRef Name="ID_PROJETO" />
+          </Key>
+          <Property Name="ID_PROJETO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME_PROJETO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVIMENTO" Relationship="Self.FK__TB_PROJET__ID_PR__25869641" FromRole="TB_PROJETOS_SISTEMAS" ToRole="TB_PROJETO_DESENVOLVIMENTO" />
+        </EntityType>
+        <EntityType Name="TB_STATUS_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_STATUS" />
+          </Key>
+          <Property Name="ID_STATUS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="Self.FK__TB_PROJET__ID_ST__4222D4EF" FromRole="TB_STATUS_DESENVOLVIMENTO" ToRole="TB_PROJETO_ITENS" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_DESENVOLVIMENTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DESENV" />
+          </Key>
+          <Property Name="ID_TIPO_DESENV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="Self.FK__TB_PROJET__ID_TI__412EB0B6" FromRole="TB_TIPO_DESENVOLVIMENTO" ToRole="TB_PROJETO_ITENS" />
+        </EntityType>
+        <EntityType Name="TB_TIPO_USUARIO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_USUARIO" />
+          </Key>
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TB_USUARIOS" Relationship="Self.FK__TB_USUARI__ID_TI__32E0915F" FromRole="TB_TIPO_USUARIO" ToRole="TB_USUARIOS" />
+        </EntityType>
+        <EntityType Name="TB_USUARIOS">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ID_DEPARTAMENTO" Type="Int32" />
+          <Property Name="EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="SENHA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DT_CADASTRO" Type="DateTime" Precision="3" />
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" />
+          <Property Name="FL_ATIVO" Type="Boolean" />
+          <Property Name="FL_DESENVOLVEDOR" Type="Boolean" />
+          <Property Name="DT_ALTERACAO" Type="DateTime" Precision="3" />
+          <Property Name="IMG_PERFIL" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TB_DEPARTAMENTO" Relationship="Self.FK__TB_USUARI__ID_DE__31EC6D26" FromRole="TB_USUARIOS" ToRole="TB_DEPARTAMENTO" />
+          <NavigationProperty Name="TB_DESENVOLVEDORES" Relationship="Self.FK__TB_DESENV__ID_US__35BCFE0A" FromRole="TB_USUARIOS" ToRole="TB_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_LOGON_SISTEMA" Relationship="Self.FK__TB_LOGON___ID_US__44FF419A" FromRole="TB_USUARIOS" ToRole="TB_LOGON_SISTEMA" />
+          <NavigationProperty Name="TB_TIPO_USUARIO" Relationship="Self.FK__TB_USUARI__ID_TI__32E0915F" FromRole="TB_USUARIOS" ToRole="TB_TIPO_USUARIO" />
+        </EntityType>
+        <Association Name="FK__TB_PROJET__ID_DE__3F466844">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_DE__31EC6D26">
+          <End Role="TB_DEPARTAMENTO" Type="Self.TB_DEPARTAMENTO" Multiplicity="0..1" />
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DEPARTAMENTO">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Principal>
+            <Dependent Role="TB_USUARIOS">
+              <PropertyRef Name="ID_DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_DESENV__ID_US__35BCFE0A">
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="0..1" />
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_DE__398D8EEE">
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVEDORES" Type="Self.TB_PROJETO_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_DE__403A8C7D">
+          <End Role="TB_DESENVOLVEDORES" Type="Self.TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_DEV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_LOGON___ID_US__44FF419A">
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="0..1" />
+          <End Role="TB_LOGON_SISTEMA" Type="Self.TB_LOGON_SISTEMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_USUARIOS">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_LOGON_SISTEMA">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__38996AB5">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVEDORES" Type="Self.TB_PROJETO_DESENVOLVEDORES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVEDORES">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__3E52440B">
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_PR__25869641">
+          <End Role="TB_PROJETOS_SISTEMAS" Type="Self.TB_PROJETOS_SISTEMAS" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_DESENVOLVIMENTO" Type="Self.TB_PROJETO_DESENVOLVIMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETOS_SISTEMAS">
+              <PropertyRef Name="ID_PROJETO" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_PROJETO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_ST__4222D4EF">
+          <End Role="TB_STATUS_DESENVOLVIMENTO" Type="Self.TB_STATUS_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_STATUS_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_STATUS" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_TI__412EB0B6">
+          <End Role="TB_TIPO_DESENVOLVIMENTO" Type="Self.TB_TIPO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Role="TB_PROJETO_ITENS" Type="Self.TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_TIPO_DESENV" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_TIPO_DESENV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_USUARI__ID_TI__32E0915F">
+          <End Role="TB_TIPO_USUARIO" Type="Self.TB_TIPO_USUARIO" Multiplicity="0..1" />
+          <End Role="TB_USUARIOS" Type="Self.TB_USUARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_TIPO_USUARIO">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Principal>
+            <Dependent Role="TB_USUARIOS">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_OS_SISTEMASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TB_DEPARTAMENTO" EntityType="Self.TB_DEPARTAMENTO" />
+          <EntitySet Name="TB_DESENVOLVEDORES" EntityType="Self.TB_DESENVOLVEDORES" />
+          <EntitySet Name="TB_LOGON_SISTEMA" EntityType="Self.TB_LOGON_SISTEMA" />
+          <EntitySet Name="TB_PRIORIDADE_ITEM" EntityType="Self.TB_PRIORIDADE_ITEM" />
+          <EntitySet Name="TB_PROJETO_DESENVOLVEDORES" EntityType="Self.TB_PROJETO_DESENVOLVEDORES" />
+          <EntitySet Name="TB_PROJETO_DESENVOLVIMENTO" EntityType="Self.TB_PROJETO_DESENVOLVIMENTO" />
+          <EntitySet Name="TB_PROJETO_ITENS" EntityType="Self.TB_PROJETO_ITENS" />
+          <EntitySet Name="TB_PROJETOS_SISTEMAS" EntityType="Self.TB_PROJETOS_SISTEMAS" />
+          <EntitySet Name="TB_STATUS_DESENVOLVIMENTO" EntityType="Self.TB_STATUS_DESENVOLVIMENTO" />
+          <EntitySet Name="TB_TIPO_DESENVOLVIMENTO" EntityType="Self.TB_TIPO_DESENVOLVIMENTO" />
+          <EntitySet Name="TB_TIPO_USUARIO" EntityType="Self.TB_TIPO_USUARIO" />
+          <EntitySet Name="TB_USUARIOS" EntityType="Self.TB_USUARIOS" />
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__3F466844" Association="Self.FK__TB_PROJET__ID_DE__3F466844">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_DE__31EC6D26" Association="Self.FK__TB_USUARI__ID_DE__31EC6D26">
+            <End Role="TB_DEPARTAMENTO" EntitySet="TB_DEPARTAMENTO" />
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_DESENV__ID_US__35BCFE0A" Association="Self.FK__TB_DESENV__ID_US__35BCFE0A">
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__398D8EEE" Association="Self.FK__TB_PROJET__ID_DE__398D8EEE">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_PROJETO_DESENVOLVEDORES" EntitySet="TB_PROJETO_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_DE__403A8C7D" Association="Self.FK__TB_PROJET__ID_DE__403A8C7D">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_LOGON___ID_US__44FF419A" Association="Self.FK__TB_LOGON___ID_US__44FF419A">
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+            <End Role="TB_LOGON_SISTEMA" EntitySet="TB_LOGON_SISTEMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__38996AB5" Association="Self.FK__TB_PROJET__ID_NM__38996AB5">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_DESENVOLVEDORES" EntitySet="TB_PROJETO_DESENVOLVEDORES" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__3E52440B" Association="Self.FK__TB_PROJET__ID_NM__3E52440B">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_PR__25869641" Association="Self.FK__TB_PROJET__ID_PR__25869641">
+            <End Role="TB_PROJETOS_SISTEMAS" EntitySet="TB_PROJETOS_SISTEMAS" />
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_ST__4222D4EF" Association="Self.FK__TB_PROJET__ID_ST__4222D4EF">
+            <End Role="TB_STATUS_DESENVOLVIMENTO" EntitySet="TB_STATUS_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_TI__412EB0B6" Association="Self.FK__TB_PROJET__ID_TI__412EB0B6">
+            <End Role="TB_TIPO_DESENVOLVIMENTO" EntitySet="TB_TIPO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_USUARI__ID_TI__32E0915F" Association="Self.FK__TB_USUARI__ID_TI__32E0915F">
+            <End Role="TB_TIPO_USUARIO" EntitySet="TB_TIPO_USUARIO" />
+            <End Role="TB_USUARIOS" EntitySet="TB_USUARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_PR__14270015" Association="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_PR__14270015">
+            <End Role="TB_PRIORIDADE_ITEM" EntitySet="TB_PRIORIDADE_ITEM" />
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+          </AssociationSet>
+          <EntitySet Name="TB_ITENS_FINALIZADOS" EntityType="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" />
+          <EntitySet Name="TB_PROJETOS_FINALIZADOS" EntityType="DB_OS_SISTEMASModel.TB_PROJETOS_FINALIZADOS" />
+          <AssociationSet Name="FK__TB_ITENS___ID_DE__797309D9" Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_DE__797309D9">
+            <End Role="TB_DESENVOLVEDORES" EntitySet="TB_DESENVOLVEDORES" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ITENS___ID_IT__787EE5A0" Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_IT__787EE5A0">
+            <End Role="TB_PROJETO_ITENS" EntitySet="TB_PROJETO_ITENS" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_ITENS___ID_NM__7A672E12" Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_NM__7A672E12">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_ITENS_FINALIZADOS" EntitySet="TB_ITENS_FINALIZADOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TB_PROJET__ID_NM__7E37BEF6" Association="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_NM__7E37BEF6">
+            <End Role="TB_PROJETO_DESENVOLVIMENTO" EntitySet="TB_PROJETO_DESENVOLVIMENTO" />
+            <End Role="TB_PROJETOS_FINALIZADOS" EntitySet="TB_PROJETOS_FINALIZADOS" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__TB_PROJET__ID_PR__14270015">
+          <End Type="DB_OS_SISTEMASModel.TB_PRIORIDADE_ITEM" Role="TB_PRIORIDADE_ITEM" Multiplicity="0..1" />
+          <End Type="DB_OS_SISTEMASModel.TB_PROJETO_ITENS" Role="TB_PROJETO_ITENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PRIORIDADE_ITEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_PRIORIDADE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TB_ITENS_FINALIZADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ITEM" Type="Int32" />
+          <Property Name="ID_NM_SOLICITACAO" Type="Int32" />
+          <Property Name="DT_FINALIZADO" Type="DateTime" Precision="3" />
+          <Property Name="ID_DESENVOLVEDOR_ITEM" Type="Int32" />
+          <Property Name="ID_USUARIO_LOGADO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_DESENVOLVEDORES" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_DE__797309D9" FromRole="TB_ITENS_FINALIZADOS" ToRole="TB_DESENVOLVEDORES" />
+          <NavigationProperty Name="TB_PROJETO_ITENS" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_IT__787EE5A0" FromRole="TB_ITENS_FINALIZADOS" ToRole="TB_PROJETO_ITENS" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVIMENTO" Relationship="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_NM__7A672E12" FromRole="TB_ITENS_FINALIZADOS" ToRole="TB_PROJETO_DESENVOLVIMENTO" />
+        </EntityType>
+        <EntityType Name="TB_PROJETOS_FINALIZADOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_NM_SOLICITACAO" Type="Int32" />
+          <Property Name="DT_FINALIZADO" Type="DateTime" Precision="3" />
+          <Property Name="ID_USUARIO_LOGADO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TB_PROJETO_DESENVOLVIMENTO" Relationship="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_NM__7E37BEF6" FromRole="TB_PROJETOS_FINALIZADOS" ToRole="TB_PROJETO_DESENVOLVIMENTO" />
+        </EntityType>
+        <Association Name="FK__TB_ITENS___ID_DE__797309D9">
+          <End Type="DB_OS_SISTEMASModel.TB_DESENVOLVEDORES" Role="TB_DESENVOLVEDORES" Multiplicity="0..1" />
+          <End Type="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" Role="TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_DESENVOLVEDORES">
+              <PropertyRef Name="ID_DEV" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_DESENVOLVEDOR_ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ITENS___ID_IT__787EE5A0">
+          <End Type="DB_OS_SISTEMASModel.TB_PROJETO_ITENS" Role="TB_PROJETO_ITENS" Multiplicity="0..1" />
+          <End Type="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" Role="TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_ITENS">
+              <PropertyRef Name="ID_ITEM" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_ITEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_ITENS___ID_NM__7A672E12">
+          <End Type="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVIMENTO" Role="TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Type="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" Role="TB_ITENS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_ITENS_FINALIZADOS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TB_PROJET__ID_NM__7E37BEF6">
+          <End Type="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVIMENTO" Role="TB_PROJETO_DESENVOLVIMENTO" Multiplicity="0..1" />
+          <End Type="DB_OS_SISTEMASModel.TB_PROJETOS_FINALIZADOS" Role="TB_PROJETOS_FINALIZADOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TB_PROJETO_DESENVOLVIMENTO">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Principal>
+            <Dependent Role="TB_PROJETOS_FINALIZADOS">
+              <PropertyRef Name="ID_NM_SOLICITACAO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_OS_SISTEMASModelStoreContainer" CdmEntityContainer="DB_OS_SISTEMASEntities">
+          <EntitySetMapping Name="TB_DEPARTAMENTO">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_DEPARTAMENTO">
+              <MappingFragment StoreEntitySet="TB_DEPARTAMENTO">
+                <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DESENVOLVEDORES">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_DESENVOLVEDORES">
+              <MappingFragment StoreEntitySet="TB_DESENVOLVEDORES">
+                <ScalarProperty Name="ID_DEV" ColumnName="ID_DEV" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOME_DESENVOLVEDOR" ColumnName="NOME_DESENVOLVEDOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_LOGON_SISTEMA">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_LOGON_SISTEMA">
+              <MappingFragment StoreEntitySet="TB_LOGON_SISTEMA">
+                <ScalarProperty Name="ID_LOGIN" ColumnName="ID_LOGIN" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="DT_LOGON" ColumnName="DT_LOGON" />
+                <ScalarProperty Name="FL_USUARIO_LOGADO" ColumnName="FL_USUARIO_LOGADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PRIORIDADE_ITEM">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PRIORIDADE_ITEM">
+              <MappingFragment StoreEntitySet="TB_PRIORIDADE_ITEM">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PRIORIDADE_TIPO" ColumnName="PRIORIDADE_TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJETO_DESENVOLVEDORES">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVEDORES">
+              <MappingFragment StoreEntitySet="TB_PROJETO_DESENVOLVEDORES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_NM_SOLICITACAO" ColumnName="ID_NM_SOLICITACAO" />
+                <ScalarProperty Name="ID_DEV" ColumnName="ID_DEV" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJETO_DESENVOLVIMENTO">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVIMENTO">
+              <MappingFragment StoreEntitySet="TB_PROJETO_DESENVOLVIMENTO">
+                <ScalarProperty Name="ID_NM_SOLICITACAO" ColumnName="ID_NM_SOLICITACAO" />
+                <ScalarProperty Name="ID_PROJETO" ColumnName="ID_PROJETO" />
+                <ScalarProperty Name="NM_VERSAO_ATUAL" ColumnName="NM_VERSAO_ATUAL" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="FL_ENCERRADO" ColumnName="FL_ENCERRADO" />
+                <ScalarProperty Name="DT_FINALIZADO" ColumnName="DT_FINALIZADO" />
+                <ScalarProperty Name="NM_VERSAO_FINAL" ColumnName="NM_VERSAO_FINAL" />
+                <ScalarProperty Name="FL_COMMIT_SOLUTION" ColumnName="FL_COMMIT_SOLUTION" />
+                <ScalarProperty Name="FL_VS_EM_PROD" ColumnName="FL_VS_EM_PROD" />
+                <ScalarProperty Name="DT_PUBLICACAO" ColumnName="DT_PUBLICACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJETO_ITENS">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PROJETO_ITENS">
+              <MappingFragment StoreEntitySet="TB_PROJETO_ITENS">
+                <ScalarProperty Name="ID_PRIORIDADE" ColumnName="ID_PRIORIDADE" />
+                <ScalarProperty Name="ID_ITEM" ColumnName="ID_ITEM" />
+                <ScalarProperty Name="ID_NM_SOLICITACAO" ColumnName="ID_NM_SOLICITACAO" />
+                <ScalarProperty Name="NOME_SOLICITANTE" ColumnName="NOME_SOLICITANTE" />
+                <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="DT_ABERTURA" ColumnName="DT_ABERTURA" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+                <ScalarProperty Name="ID_DEV" ColumnName="ID_DEV" />
+                <ScalarProperty Name="ID_TIPO_DESENV" ColumnName="ID_TIPO_DESENV" />
+                <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
+                <ScalarProperty Name="CAMADAS_METODOS_DESCRICAO" ColumnName="CAMADAS_METODOS_DESCRICAO" />
+                <ScalarProperty Name="PROCEDURES_NOMES" ColumnName="PROCEDURES_NOMES" />
+                <ScalarProperty Name="DESCRICAO_DESENVOLVIMENTO" ColumnName="DESCRICAO_DESENVOLVIMENTO" />
+                <ScalarProperty Name="DT_TERMINO" ColumnName="DT_TERMINO" />
+                <ScalarProperty Name="FL_COMMIT_ITEM" ColumnName="FL_COMMIT_ITEM" />
+                <ScalarProperty Name="TOTAL_HRS_ITEM" ColumnName="TOTAL_HRS_ITEM" />
+                <ScalarProperty Name="FL_ITEM_ENCERRADO" ColumnName="FL_ITEM_ENCERRADO" />
+                <ScalarProperty Name="DT_PUBLICACAO" ColumnName="DT_PUBLICACAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJETOS_SISTEMAS">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PROJETOS_SISTEMAS">
+              <MappingFragment StoreEntitySet="TB_PROJETOS_SISTEMAS">
+                <ScalarProperty Name="ID_PROJETO" ColumnName="ID_PROJETO" />
+                <ScalarProperty Name="NOME_PROJETO" ColumnName="NOME_PROJETO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_STATUS_DESENVOLVIMENTO">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_STATUS_DESENVOLVIMENTO">
+              <MappingFragment StoreEntitySet="TB_STATUS_DESENVOLVIMENTO">
+                <ScalarProperty Name="ID_STATUS" ColumnName="ID_STATUS" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPO_DESENVOLVIMENTO">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_TIPO_DESENVOLVIMENTO">
+              <MappingFragment StoreEntitySet="TB_TIPO_DESENVOLVIMENTO">
+                <ScalarProperty Name="ID_TIPO_DESENV" ColumnName="ID_TIPO_DESENV" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_TIPO_USUARIO">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_TIPO_USUARIO">
+              <MappingFragment StoreEntitySet="TB_TIPO_USUARIO">
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USUARIOS">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_USUARIOS">
+              <MappingFragment StoreEntitySet="TB_USUARIOS">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="SENHA" ColumnName="SENHA" />
+                <ScalarProperty Name="DT_CADASTRO" ColumnName="DT_CADASTRO" />
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+                <ScalarProperty Name="FL_ATIVO" ColumnName="FL_ATIVO" />
+                <ScalarProperty Name="FL_DESENVOLVEDOR" ColumnName="FL_DESENVOLVEDOR" />
+                <ScalarProperty Name="DT_ALTERACAO" ColumnName="DT_ALTERACAO" />
+                <ScalarProperty Name="IMG_PERFIL" ColumnName="IMG_PERFIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_ITENS_FINALIZADOS">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS">
+              <MappingFragment StoreEntitySet="TB_ITENS_FINALIZADOS">
+                <ScalarProperty Name="ID_USUARIO_LOGADO" ColumnName="ID_USUARIO_LOGADO" />
+                <ScalarProperty Name="ID_DESENVOLVEDOR_ITEM" ColumnName="ID_DESENVOLVEDOR_ITEM" />
+                <ScalarProperty Name="DT_FINALIZADO" ColumnName="DT_FINALIZADO" />
+                <ScalarProperty Name="ID_NM_SOLICITACAO" ColumnName="ID_NM_SOLICITACAO" />
+                <ScalarProperty Name="ID_ITEM" ColumnName="ID_ITEM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_PROJETOS_FINALIZADOS">
+            <EntityTypeMapping TypeName="DB_OS_SISTEMASModel.TB_PROJETOS_FINALIZADOS">
+              <MappingFragment StoreEntitySet="TB_PROJETOS_FINALIZADOS">
+                <ScalarProperty Name="ID_USUARIO_LOGADO" ColumnName="ID_USUARIO_LOGADO" />
+                <ScalarProperty Name="DT_FINALIZADO" ColumnName="DT_FINALIZADO" />
+                <ScalarProperty Name="ID_NM_SOLICITACAO" ColumnName="ID_NM_SOLICITACAO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
