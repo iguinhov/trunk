@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3ffe722593b848b687b2ea3007a21620" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_DEPARTAMENTO" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_DESENVOLVEDORES" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_LOGON_SISTEMA" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PRIORIDADE_ITEM" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVEDORES" Width="2.875" PointX="10.5" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVIMENTO" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_ITENS" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETOS_SISTEMAS" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_STATUS_DESENVOLVIMENTO" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_TIPO_DESENVOLVIMENTO" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_TIPO_USUARIO" Width="1.5" PointX="3.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_USUARIOS" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+      <Diagram DiagramId="3ffe722593b848b687b2ea3007a21620" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_DEPARTAMENTO" Width="2.125" PointX="0.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_DESENVOLVEDORES" Width="2.125" PointX="11.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_LOGON_SISTEMA" Width="2.75" PointX="11.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PRIORIDADE_ITEM" Width="2.625" PointX="5.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVEDORES" Width="2.875" PointX="15.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_DESENVOLVIMENTO" Width="2.875" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETO_ITENS" Width="2.5" PointX="4.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETOS_SISTEMAS" Width="2.25" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_STATUS_DESENVOLVIMENTO" Width="3" PointX="0.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_TIPO_DESENVOLVIMENTO" Width="2.875" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_TIPO_USUARIO" Width="2.875" PointX="5.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_USUARIOS" Width="2.375" PointX="8.125" PointY="8" IsExpanded="true" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_DE__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_USUARI__ID_DE__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_DESENV__ID_US__35BCFE0A" ManuallyRouted="false" />
@@ -30,8 +30,8 @@
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_TI__412EB0B6" ManuallyRouted="false" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_USUARI__ID_TI__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_PROJET__ID_PR__14270015" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" Width="1.5" PointX="10.5" PointY="9" />
-        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETOS_FINALIZADOS" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_ITENS_FINALIZADOS" Width="3.75" PointX="16.25" PointY="9.5" />
+        <EntityTypeShape EntityType="DB_OS_SISTEMASModel.TB_PROJETOS_FINALIZADOS" Width="2.625" PointX="4.625" PointY="14.625" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_DE__797309D9" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_IT__787EE5A0" />
         <AssociationConnector Association="DB_OS_SISTEMASModel.FK__TB_ITENS___ID_NM__7A672E12" />
