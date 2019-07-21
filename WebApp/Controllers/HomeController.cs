@@ -84,9 +84,9 @@ namespace WebApp.Controllers
                     return View(model);   
                 }
 
-                catch (EntityException)
+                catch (EntityException ex)
                 {
-                    return View("Erro : - ");   
+                    return View("Erro : - " + ex.Message);   
                 }
 
                 catch (SqlException)

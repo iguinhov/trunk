@@ -13,17 +13,17 @@ namespace Repository
         /// <summary>
         /// Smtp default
         /// </summary>
-        private string smtp = "mail.ituran.com.br";
+        private string smtp = "iggorcarreiro2@gmail.com";
 
         /// <summary>
         /// Login default
         /// </summary>
-        private string login = "SISTEMA DE OS :: ITURAN :: <naoresponda@ituran.com.br>";
+        private string login = "SISTEMA DE OS :: ITURAN :: <iggorcarreiro2@gmail.com";
 
         /// <summary>
         /// Senha default
         /// </summary>
-        private string senha = "";
+        private string senha = "avatar11";
         /// <summary>
         /// inica a classe
         /// </summary>
