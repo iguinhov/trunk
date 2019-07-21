@@ -11,7 +11,7 @@ namespace Persistence
 {
     public class Conexao
     {
-        protected string strCon = ConfigurationManager.ConnectionStrings["cxSQLSistemas"].ConnectionString;
+        protected string strCon = "Data Source=PANSUTTI\\SQLEXPRESS;Initial Catalog=DB_OS_SISTEMAS;Integrated Security=True;MultipleActiveResultSets=True"; /*ConfigurationManager.ConnectionStrings["cxSQLSistemas"].ConnectionString;*/
         protected SqlConnection sqlCon;
         protected SqlCommand cmd;
         protected SqlDataReader objDr;
