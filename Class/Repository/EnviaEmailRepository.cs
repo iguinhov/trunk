@@ -18,7 +18,7 @@ namespace Repository
         /// <summary>
         /// Login default
         /// </summary>
-        private string login = "SISTEMA DE OS :: ITURAN :: <iggorcarreiro2@gmail.com";
+        private string login = "SISTEMA DE OS :: OS :: <iggorcarreiro2@gmail.com";
 
         /// <summary>
         /// Senha default
