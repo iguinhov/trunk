@@ -217,7 +217,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Logar", "Usuario");
             }
-            
+
 
         }
 
@@ -362,7 +362,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("Logar", "Usuario");
             }
-           
+
         }
 
         // GET: Itens/Delete/5
@@ -437,7 +437,7 @@ namespace WebApp.Controllers
                    lst_prod = string.Empty;
 
                     //cria variável que realiza consulta no banco, do último item criado para enviar e-mail.
-                  //  var resultado = _db.pubconsultaporiditemenvioemail(id);
+                    //  var resultado = _db.pubconsultaporiditemenvioemail(id);
 
                     //seta variáveis que serão utilizadas para o corpo do e-mail
                     var iditem = 0;
@@ -485,24 +485,24 @@ namespace WebApp.Controllers
                     {
                         //utiliza o método de envio de e-mail e concate o corpo, texto, campos a serem utilizados para envio conforme montado acima.
                         envia.MandaEmail(string.Concat(emaildesenv),
-                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.tostring(), " ]", " - status alterado :"), corpo, out msg);
+                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.ToString(), " ]", " - status alterado :"), corpo, out msg);
                     }
 
                     else if (emailreq == string.Empty)
                     {
                         //utiliza o método de envio de e-mail e concate o corpo, texto, campos a serem utilizados para envio conforme montado acima.
                         envia.MandaEmail(string.Concat(emaildesenv, "; ", emailalte),
-                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.tostring(), " ]", " - status alterado :"), corpo, out msg);
+                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.ToString(), " ]", " - status alterado :"), corpo, out msg);
                     }
                     else if (emailalte == string.Empty)
                     {
                         envia.MandaEmail(string.Concat(emaildesenv, "; ", emailreq),
-                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.tostring(), " ]", " - status alterado :"), corpo, out msg);
+                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.ToString(), " ]", " - status alterado :"), corpo, out msg);
                     }
                     else
                     {
                         envia.MandaEmail(string.Concat(emaildesenv, "; ", emailreq, "; ", emailalte),
-                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.tostring(), " ]", " - status alterado :"), corpo, out msg);
+                        string.Concat("projeto: ", projeto, " versão: ", versao, " item: [ ", iditem.ToString(), " ]", " - status alterado :"), corpo, out msg);
                     }
 
                     //após todo o processo, exibe mensagem em tela com número do item e que foi enviado ao desenvolvedor.
@@ -525,7 +525,7 @@ namespace WebApp.Controllers
             {
                 return RedirectToAction("logar", "usuario");
             }
-           
+
         }
 
         //GET/POST: Pesquisa dos itens por status
@@ -655,7 +655,7 @@ namespace WebApp.Controllers
                 lst_prod = string.Empty;
 
                 //Cria variável que realiza consulta no banco, do último item criado para enviar e-mail.
-              //  var resultado = _db.pubConsultaPorIdItemEnvioEmail(id);
+                //  var resultado = _db.pubConsultaPorIdItemEnvioEmail(id);
 
                 //Seta variáveis que serão utilizadas para o corpo do e-mail
                 var idItem = 0;
@@ -738,7 +738,6 @@ namespace WebApp.Controllers
                 return View(item);
             }
         }
-            return View();
-        }
     }
 }
+
