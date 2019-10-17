@@ -76,9 +76,10 @@ namespace WebApp.Controllers
                     for (int i = 0; i < Request.Files.Count; i++)
                     {
                         HttpPostedFileBase arquivo = Request.Files[i];
-                        var imagem = Image.FromStream(arquivo.InputStream, true, true);
+                       
                         if (arquivo.ContentLength > 0)
                         {
+                            var imagem = Image.FromStream(arquivo.InputStream, true, true);
                             MemoryStream ms = new MemoryStream();
                             imagem.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                             anexo++;

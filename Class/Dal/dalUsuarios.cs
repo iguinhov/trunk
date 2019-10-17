@@ -33,8 +33,16 @@ namespace Dal
                     cmd.Parameters.AddWithValue("@ID_TIPO_USUARIO", usuarios.idTipoUsuario);
                     cmd.Parameters.AddWithValue("@FL_ATIVO", usuarios.flAtivo);
                     cmd.Parameters.AddWithValue("@FL_DESENVOLVEDOR", usuarios.flDev);
-                    cmd.Parameters.AddWithValue("@IMG_PERFIL", usuarios.imagem);                                        
-
+                    if (usuarios.imagem != null)
+                    {
+                        cmd.Parameters.AddWithValue("@IMG_PERFIL", usuarios.imagem);
+                    }
+                    else
+                    {
+                        string path = @"../../Images/storm.png";
+                        usuarios.imagem = Encoding.ASCII.GetBytes(path);
+                        cmd.Parameters.AddWithValue("@IMG_PERFIL", usuarios.imagem);
+                    }
                     try
                     {
                         sqlCon.Open();
@@ -236,8 +244,17 @@ namespace Dal
 
                             usuario.idUsuario = Convert.ToInt32(objDr["ID_USUARIO"].ToString());
                             usuario.login = objDr["LOGIN"].ToString();
-                            usuario.senha = objDr["SENHA"].ToString();                       
-                            usuario.imagem = (byte[])objDr["IMG_PERFIL"];                                                     
+                            usuario.senha = objDr["SENHA"].ToString();
+                            if (usuario.imagem == null)
+                            {
+                                string path = @"../../Images/storm.png";
+                                usuario.imagem = Encoding.ASCII.GetBytes(path);
+                            }
+                            else
+                            {
+                                usuario.imagem = (byte[])objDr["IMG_PERFIL"];
+                            }
+                                                                           
                         }
 
                         return usuario;
