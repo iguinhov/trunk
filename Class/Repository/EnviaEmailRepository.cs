@@ -23,7 +23,7 @@ namespace Repository
         /// <summary>
         /// Senha default
         /// </summary>
-        private string senha = "avatar11";
+        private string senha = "teste";
         /// <summary>
         /// inica a classe
         /// </summary>
