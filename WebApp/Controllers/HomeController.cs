@@ -27,7 +27,7 @@ namespace WebApp.Controllers
                 {
                     var graf1 = (from desenv in _db.TB_DESENVOLVEDORES
                                  join item in _db.TB_PROJETO_ITENS on desenv.ID_DEV equals item.ID_DEV
-                                 where item.FL_ITEM_ENCERRADO == false 
+                                 where item.FL_ITEM_ENCERRADO == false
                                  group desenv by desenv.NOME_DESENVOLVEDOR into j
                                  select new
                                  {
@@ -52,7 +52,7 @@ namespace WebApp.Controllers
 
 
                     var graf3 = (from status in _db.TB_STATUS_DESENVOLVIMENTO
-                                 join item in _db.TB_PROJETO_ITENS on status.ID_STATUS equals item.ID_STATUS                                 
+                                 join item in _db.TB_PROJETO_ITENS on status.ID_STATUS equals item.ID_STATUS
                                  group status by status.DESCRICAO into j
                                  select new
                                  {
